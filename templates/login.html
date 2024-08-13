@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<style>
+</style>
+
+<body>
+    <div id="main-container">
+        <div id="introdiv">
+            <span id="logo">
+                <img src="" alt="">
+            </span>
+
+            <div id="content">
+                <div id="maindiv">
+                    <span id="imgcontainer">
+                        <span><img src="" alt=""></span>
+                        <span><img src="" alt=""></span>
+                        <span><img src="" alt=""></span>
+                    </span>
+                    <h3>Start to Code <br> wisely</h3>
+                    <br>
+                    <p class="para">Explore articles on tech and innovation, crafted to fuel your passion for learning.</p>
+                </div>
+
+                <div>
+                    <button>&larr;</button>
+                    <button>&rarr;</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="form-div" autocomplete="off">
+            <div id="form-container">
+                <h2>Sign in to Blogs</h2>
+                <span>
+                    <img src="{% static '/images/google.png' %}" alt="">
+                    <img src="{% static '/images/apple.png' %}" alt="">
+                    <img src="{% static '/images/fb.png' %}" alt="">
+                </span>
+                <hr>
+                <p>or do it via email</p>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="">Username</label>
+                    <input type="text" name="user" placeholder="Username" required>
+                    <br>
+                    <label for="">Password</label>
+                    <input type="password" name="pass" placeholder="Password" required>
+                    <h6>must be 8 characters at least</h6>
+                    
+                    {% if error %}
+                    <h4 class="fp">{{error}}</h4>
+                    {% endif %}
+                    
+                    <span id="checkbox">
+                        <span><input type="checkbox">
+                            <label for="">Remember me</label>
+                        </span>
+                        <h5>Forgot password?</h5>
+                    </span>
+                    
+                    <button type="submit" data-dismiss="alert">Sign in</button>
+                </form>
+                
+                <!-- Sign Up button -->
+                <h5>Don't have an account? <a href="{% url 'signup'%}" id="signup-link">Sign Up</a></h5>
+
+                <h6>&copy2021 All Rights Reserved</h6>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

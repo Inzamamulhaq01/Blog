@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    
+
+    <link rel="stylesheet" href="{% static 'signup_style.css' %}">
+</head>
+<style>
+</style>
+
+<body>
+    
+    <div id="form-div" autocomplete="off">
+        <div id="form-container">
+            <h2>Create an Account</h2>
+           
+            <hr>
+            <p>or sign up with your email</p>
+            
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="username">Username</label>
+                <input type="text" name="username" value="{{username}}" placeholder="Username" required>
+                <br>
+
+                <label for="firstname">Firstname</label>
+                <input type="text" name="firstname" value="{{firstname}}" placeholder="Firstname" required>
+                <br>
+
+             <label for="lastname">Lastname</label>
+                <input type="text" name="lastname" value="{{lastname}}" placeholder="Lastname" required>
+                <br>
+                
+                <label for="email">Email</label>
+                <input type="email" name="email" value="{{email}}" placeholder="Email" required>
+                <br>
+                
+                <label for="password">Password</label>
+                <input type="password" name="password" value="{{password}}" placeholder="Password" required>
+                <h6>must be 8 characters at least</h6>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" name="confirm_password" value="{{confirm_password}}" placeholder="Confirm Password" required> 
+                
+                {% if error %}
+                <h4 class="fp">{{error}}</h4>
+                {% endif %}
+
+                <span id="checkbox">
+                    <span><input type="checkbox" required>
+                        <label for="">I agree to the <a href="#">Terms and Conditions</a></label>
+                    </span>
+                </span>
+                
+                <button type="submit">Sign Up</button>
+            </form>
+
+            <h6>&copy2021 All Rights Reserved</h6>
+        </div>
+    </div>
+</body>
+
+</html>

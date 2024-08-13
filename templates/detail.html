@@ -1,0 +1,90 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+<body>
+
+  
+  <div class="container-fluid" style="padding-bottom: 60px;"> <!-- Add padding here -->
+      <div class="row">
+          <div class="col-lg-8 col-md-10 col-sm-12">
+              <h1 class="mb-4">{{post.title}}</h1>
+              <p class="text-muted">Posted at {{post.created_at | date:"F j Y"}}</p>
+              <img src="{{post.img}}" class="img-fluid mb-4" alt="image">
+              <!-- <p>{{post.content}}</p> -->
+              <div class="post-content" style="max-width: 100%;">
+                <p>{{post.content}}</p>
+            </div>
+              
+              <!-- Add Comment Button -->
+              <div class="mt-4">
+                <a href="{% url 'comment' slug=post.slug%}"><button class="btn btn-primary">Post Comment</button></a>
+                  
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card mt-3">
+                  <div class="card-body">
+                      <h5 class="card-title">Other Posts</h5>
+                      <ul class="list-unstyled">
+                          {% for other_post in other_posts|slice:":10" %}
+                          <li><a class="op" href="{% url 'detail' slug=other_post.slug %}">{{other_post.title}}</a></li>
+                          {% endfor %}
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <!-- Comments Section -->
+  <div class="mt-5">
+    <h2 class="text-dark fw-bold text-center">Comments</h2>
+    <hr>
+  
+    {% if comments %}
+      <div class="d-flex flex-wrap pb-5">
+        {% for comment in comments %}
+          <div class="comment mb-4 p-4 rounded mx-2" style="background-color: #f0f0f0; width: 300px;">
+            <h5 class="text-primary">{{ comment.name }} comments</h5>
+            <span class="text-muted small">at {{ comment.created_at | date:"F j Y" }}</span>
+            <p class="text-dark mt-2">{{ comment.message }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info mb-5" role="alert ">
+        No comments yet. Be the first to comment!
+      </div>
+    {% endif %}
+  </div>
+  
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <style>
+    .btn-primary:hover {
+              font-weight: bold;  
+                background-color: white;
+                color: #0000FF;
+                border-color: #0000FF; /* Optional: change the border color too */
+                border-radius: 10px;
+            }
+    .op:hover{
+        color: #6F00FF;
+    }
+    
+    </style>
+
+</body>
+
+{% endblock content %}
+
+
+
+
+
